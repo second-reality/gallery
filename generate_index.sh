@@ -17,6 +17,15 @@ git_user=$(cat GIT_USER)
 base_raw_url="https://raw.githubusercontent.com/$git_user"
 base_repo_url="https://github.com/$git_user"
 
+index_one_gallery()
+{
+    gallery_file="$1"
+    gallery_name=$(basename "$gallery_file")
+cat << EOF
+<a href="#$gallery_name">$gallery_name</a><br>
+EOF
+}
+
 one_gallery()
 {
     gallery_file="$1"
@@ -65,6 +74,14 @@ cat << EOF
 <script  type="text/javascript" src="$cdn/jquery.nanogallery2.min.js"></script>
 <body style="background-color:lightgray">
 $(cat header.html)
+EOF
+
+    find galleries -type f | sort -r | while read g; do
+        index_one_gallery "$g"
+    done
+
+cat << EOF
+<hr>
 EOF
 
     find galleries -type f | sort -r | while read g; do
