@@ -34,7 +34,7 @@ one_gallery()
     url="$base_raw_url/$repo_name/master"
     dl_link="https://downgit.github.io/#/home?url=$base_repo_url/$repo_name/tree/master/orig"
 cat << EOF
-    <h2 id="$gallery_name"><a href="#$gallery_name">$gallery_name</a> <a href="$dl_link">💾</a></h2>
+    <h2 id="$gallery_name"><a href="#$gallery_name">$gallery_name</a> <a href="$dl_link">💾</a> <a href="#top">⇪</a></h2>
     <div id="nanogallery2-$repo_name" data-nanogallery2 = '{
          "thumbnailWidth": "auto",
          "thumbnailHeight": 300,
@@ -74,6 +74,7 @@ cat << EOF
 <script  type="text/javascript" src="$cdn/jquery.nanogallery2.min.js"></script>
 <body style="background-color:lightgray">
 $(cat header.html)
+<p id="top"></p>
 EOF
 
     find galleries -type f | sort -r | while read g; do
