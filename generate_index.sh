@@ -34,7 +34,8 @@ one_gallery()
     url="$base_raw_url/$repo_name/master"
     dl_link="https://downgit.github.io/#/home?url=$base_repo_url/$repo_name/tree/master/orig"
 cat << EOF
-    <h2 id="$gallery_name"><a href="#$gallery_name">$gallery_name</a> <a href="$dl_link">💾</a> <a href="#top">⇪</a></h2>
+<h2 id="$gallery_name"><a href="#$gallery_name">$gallery_name</a> <a href="$dl_link">💾</a> <a href="#top">⇪</a></h2>
+<div class="gallery_$repo_name">
 EOF
     for photo in $(cat "$gallery_file"); do
         original=$url/orig/$photo
@@ -44,14 +45,25 @@ cat << EOF
     <a href="$view"><img loading="lazy" src="$mini" height=200px/></a>
 EOF
     done
+# https://github.com/feimosi/baguetteBox.js
 cat << EOF
-    </div>
+</div>
+<script>
+    window.addEventListener('load', function() {
+    baguetteBox.run('.gallery_$repo_name', {
+        "fullScreen": true,
+        "animation": false,
+    });
+});
+</script>
 EOF
 }
 
 generate_index()
 {
 cat << EOF
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.12.0/baguetteBox.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.12.0/baguetteBox.min.js" async></script>
 <body style="background-color:lightgray">
 $(cat header.html)
 <p id="top"></p>
