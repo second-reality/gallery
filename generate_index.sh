@@ -34,7 +34,7 @@ one_gallery()
     url="$base_raw_url/$repo_name/master"
     dl_link="https://downgit.github.io/#/home?url=$base_repo_url/$repo_name/tree/master/orig"
 cat << EOF
-<h2 id="$gallery_name"><a href="#$gallery_name">$gallery_name</a> | <a href="$dl_link" style="text-decoration:none">↓</a> | <a href="#" style="text-decoration:none">≡</a></h2>
+<h2 id="$gallery_name"><a href="#$gallery_name">$gallery_name</a> | <a href="$dl_link" style="text-decoration:none" target="_blank">↓</a> | <a href="#" style="text-decoration:none">≡</a></h2>
 <div class="gallery_$repo_name">
 EOF
     for photo in $(cat "$gallery_file"); do
@@ -42,7 +42,7 @@ EOF
         view=$url/view/$photo
         mini=$url/mini/$photo
 cat << EOF
-    <a href="$view" data-caption="<a href=$original style=text-decoration:none>🔍</a>"><img loading="lazy" src="$mini" height=200px/></a>
+    <a href="$view" data-caption="<a href=$original style=text-decoration:none target=_blank>🔍</a>"><img loading="lazy" src="$mini" height=200px/></a>
 EOF
     done
 # https://github.com/feimosi/baguetteBox.js
