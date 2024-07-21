@@ -75,8 +75,8 @@ EOF
     done
 
 cat << EOF
-</details>
 <hr>
+</details>
 EOF
 
     find galleries -type f | sort -r | while read g; do
