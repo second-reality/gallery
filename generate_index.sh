@@ -66,6 +66,8 @@ cat << EOF
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.12.0/baguetteBox.min.js" async></script>
 <body style="background-color:lightgray">
 $(cat header.html)
+<details>
+<summary>Index</summary>
 EOF
 
     find galleries -type f | sort -r | while read g; do
@@ -73,6 +75,7 @@ EOF
     done
 
 cat << EOF
+</details>
 <hr>
 EOF
 
