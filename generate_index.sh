@@ -34,7 +34,7 @@ one_gallery()
     url="$base_raw_url/$repo_name/master"
     dl_link="https://downgit.github.io/#/home?url=$base_repo_url/$repo_name/tree/master/orig"
 cat << EOF
-<h2 id="$gallery_name"><a href="#$gallery_name">$gallery_name</a> | <a href="$dl_link" style="text-decoration:none" target="_blank">↓</a> | <a href="#" style="text-decoration:none">≡</a></h2>
+<h2 id="$gallery_name"><a href="#$gallery_name">$gallery_name</a>|<a href="$dl_link" style="text-decoration:none" target="_blank">↓</a>|<a href="#" style="text-decoration:none">≡</a></h2>
 <div class="gallery_$repo_name">
 EOF
     for photo in $(cat "$gallery_file"); do
