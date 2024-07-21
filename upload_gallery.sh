@@ -64,6 +64,11 @@ main()
 
     cp -r "$folder" "$tmp/repo"
     pushd "$tmp/repo"
+
+    find . -type f | (grep -vi '\.jpg' || true) | while read extra_file; do
+        echo "delete extra file: $extra_file"
+        rm "$extra_file"
+    done
     convert_all_photos
     git init
     set_git_config
