@@ -12,7 +12,7 @@ list_photos()
 {
     folder="$1"
     pushd "$folder" > /dev/null
-    find . | grep '.jpg' | sed -e 's#^\./##' | sort
+    find . | grep -i '\.jpg$' | sed -e 's#^\./##' | sort
     popd > /dev/null
 }
 
@@ -26,7 +26,7 @@ set_git_config()
 
 convert_all_photos()
 {
-    for photo in $(find . | grep '.jpg'); do
+    for photo in $(find . | grep -i '\.jpg$'); do
         dirname=$(dirname "$photo")
         mkdir -p "orig/$dirname"
         mkdir -p "view/$dirname"
