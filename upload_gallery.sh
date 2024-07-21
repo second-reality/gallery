@@ -38,6 +38,19 @@ convert_all_photos()
         echo "convert -resize 2000x2000 -quality 90% $original $view"
         echo "convert -resize 400x400 -quality 90% $original $mini"
     done | parallel -j "$(nproc)" --bar
+
+    size=$(du -s . | cut -f 1)
+    limit=2000000 # Github single push limit is 2GB
+    if [ $size -gt $limit ]; then
+        echo "GitHub single push limit reached, delete original files"
+        rm -rf orig
+        size=$(du -s . | cut -f 1)
+        if [ $size -gt $limit ]; then
+            die "size of view only pics is bigger than GitHub limit"
+        fi
+        cp -r view orig # duplicate view as original files
+        # git will deduplicate files
+    fi
 }
 
 check_auth()
