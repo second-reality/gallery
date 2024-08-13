@@ -58,7 +58,7 @@ check_auth()
     [ -f GIT_USER ] || die "file GIT_USER missing"
     git_user=$(cat GIT_USER)
     gh auth status || die "need to authenticate using 'gh auth login' first"
-    auth_user=$(gh auth status |& grep "Logged in to github.com" | sed -e 's/.*github.com as //' -e 's/ (.*//')
+    auth_user=$(gh auth status |& grep "Logged in to github.com" | sed -e 's/.*github.com account //' -e 's/ (.*//' | head -n 1)
     [ "$auth_user" == "$git_user" ] || die "auth user $auth_user different from expected $git_user"
 }
 
