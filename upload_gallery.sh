@@ -71,6 +71,8 @@ main()
     repo_name=$(echo "$gallery_name" | sha1sum | head -c 10)
 
     check_auth
+    echo "delete old repo \"$repo_name\" (if it exists)"
+    gh repo view "$repo_name" && gh repo delete "$repo_name" --yes
 
     tmp=$(mktemp -d)
     trap "rm -rf $tmp" EXIT
