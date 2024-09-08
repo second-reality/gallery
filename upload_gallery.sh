@@ -64,10 +64,10 @@ check_auth()
 
 main()
 {
-    [ $# -eq 2 ] || die "usage: folder gallery_name"
+    [ $# -eq 1 ] || die "usage: folder"
 
     folder="$1"; shift
-    gallery_name="$1";shift
+    gallery_name="$(basename "$folder")"
     repo_name=$(echo "$gallery_name" | sha1sum | head -c 10)
 
     check_auth
