@@ -19,22 +19,22 @@ base_repo_url="https://github.com/$git_user"
 
 index_one_gallery()
 {
-    gallery_file="$1"
+    gallery_file="$1";shift
     gallery_name=$(basename "$gallery_file")
 cat << EOF
-<a href="#$gallery_name">$gallery_name</a><br>
+<a href="$gallery_name.html">$gallery_name</a><br>
 EOF
 }
 
 one_gallery()
 {
-    gallery_file="$1"
+    gallery_file="$1";shift
     gallery_name=$(basename "$gallery_file")
     repo_name=$(echo "$gallery_name" | sha1sum | head -c 10)
     url="$base_raw_url/$repo_name/master"
     dl_link="https://downgit.github.io/#/home?url=$base_repo_url/$repo_name/tree/master/orig"
 cat << EOF
-<h2 id="$gallery_name"><a href="#$gallery_name">$gallery_name</a>|<a href="$dl_link" style="text-decoration:none" target="_blank">↓</a>|<a href="#" style="text-decoration:none">≡</a></h2>
+<h2 id="$gallery_name"><a href="${gallery_name}.html">$gallery_name</a>|<a href="$dl_link" style="text-decoration:none" target="_blank">↓</a>|<a href="index.html" style="text-decoration:none">≡</a></h2>
 <div class="gallery_$repo_name">
 EOF
     for photo in $(cat "$gallery_file"); do
@@ -59,15 +59,30 @@ cat << EOF
 EOF
 }
 
-generate_index()
+header()
 {
 cat << EOF
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.12.0/baguetteBox.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/baguettebox.js/1.12.0/baguetteBox.min.js" async></script>
 <body style="background-color:lightgray">
-$(cat header.html)
-<details>
-<summary>Index</summary>
+EOF
+cat header.html
+}
+
+footer()
+{
+cat << EOF
+</body>
+EOF
+cat footer.html
+}
+
+generate_list()
+{
+cat << EOF
+<details $*>
+<summary>Galleries</summary>
+<a href="index.html">All</a><br>
 EOF
 
     find galleries -type f | sort -r | while read g; do
@@ -78,14 +93,33 @@ cat << EOF
 <hr>
 </details>
 EOF
+}
+
+generate_index()
+{
+    header
+    generate_list
 
     find galleries -type f | sort -r | while read g; do
         one_gallery "$g"
     done
-cat << EOF
-$(cat footer.html)
-</body>
-EOF
+    footer
 }
 
+generate_galleries()
+{
+    find galleries -type f | sort -r | while read g; do
+        gallery_name=$(basename "$g")
+        o=$gallery_name.html
+        cat > "$o" << EOF
+$(header)
+$(one_gallery "$g")
+<hr>
+$(generate_list open)
+$(footer)
+EOF
+    done
+}
+
+generate_galleries
 generate_index > index.html
