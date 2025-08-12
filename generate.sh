@@ -89,7 +89,7 @@ EOF
     done
 
 cat << EOF
-<hr>
+<br>
 </details>
 EOF
 }
@@ -113,7 +113,7 @@ generate_galleries()
         cat > "$o" << EOF
 $(header)
 $(one_gallery "$g")
-<hr>
+<br>
 $(generate_list open)
 $(footer)
 EOF
