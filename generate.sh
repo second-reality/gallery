@@ -82,7 +82,6 @@ generate_list()
 cat << EOF
 <details $*>
 <summary>Galleries</summary>
-<a href="index.html">All</a><br>
 EOF
 
     find galleries -type f | sort -r | while read g; do
