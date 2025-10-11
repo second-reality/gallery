@@ -42,7 +42,7 @@ EOF
         view=$url/view/$photo
         mini=$url/mini/$photo
 cat << EOF
-    <a href="$view" data-caption="<a href=$original style=text-decoration:none target=_blank>🔍</a>"><img loading="lazy" src="$mini" height=200px/></a>
+    <a href="$view" data-caption="<a href=$original style=text-decoration:none target=_blank>🔍</a>"><img loading="lazy" src="$mini" height=250px/></a>
 EOF
     done
 # https://github.com/feimosi/baguetteBox.js
