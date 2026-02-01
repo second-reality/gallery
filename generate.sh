@@ -114,7 +114,7 @@ generate_galleries()
 $(header)
 $(one_gallery "$g")
 <br>
-$(generate_list open)
+$(generate_list)
 $(footer)
 EOF
     done
