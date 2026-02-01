@@ -54,7 +54,7 @@ cat << EOF
 <script>
     window.addEventListener('load', function() {
     baguetteBox.run('.gallery_$repo_name', {
-        "fullScreen": false,
+        "fullScreen": true,
         "animation": false,
     });
 });
