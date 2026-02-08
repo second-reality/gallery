@@ -49,15 +49,11 @@ cat << EOF
 EOF
     done
 # https://github.com/feimosi/baguetteBox.js
+# use DOMContentLoaded for faster loading (does not wait all images)
 cat << EOF
 </div>
 <script>
-    window.addEventListener('load', function() {
-    baguetteBox.run('.gallery_$repo_name', {
-        "fullScreen": true,
-        "animation": false,
-    });
-});
+baguetteBox.run('.gallery_$repo_name', {"fullScreen": true, "animation": false});
 </script>
 EOF
 }
