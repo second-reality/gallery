@@ -45,7 +45,7 @@ EOF
         view=$url/view/$photo
         mini=$url/mini/$photo
 cat << EOF
-    <a href="$view" data-caption="<a href=$original style=text-decoration:none;$font_big target=_blank>🔍</a>"><img loading="lazy" src="$mini" height=250px/></a>
+    <a href="$view" data-caption="<a href=$original style=text-decoration:none;$font_big target=_blank>🔍</a>"><img loading="lazy" src="$mini" height=220px/></a>
 EOF
     done
 # https://github.com/feimosi/baguetteBox.js
@@ -61,9 +61,12 @@ EOF
 header()
 {
 cat << EOF
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/baguettebox.js@1.13.0/dist/baguetteBox.css">
-<script src="https://cdn.jsdelivr.net/npm/baguettebox.js@1.13.0/dist/baguetteBox.js"></script>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/baguettebox.js@1.13.0/dist/baguetteBox.css">
+</head>
 <body style="background-color:lightgray">
+<script src="https://cdn.jsdelivr.net/npm/baguettebox.js@1.13.0/dist/baguetteBox.js"></script>
 EOF
 cat header.html
 }
