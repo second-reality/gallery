@@ -18,6 +18,7 @@ base_repo_url="https://github.com/$git_user"
 
 font_big=font-size:3vh
 font_normal=font-size:2vh
+image_size='max-height:32vh;max-width:96vw'
 
 index_one_gallery()
 {
@@ -45,7 +46,7 @@ EOF
         view=$url/view/$photo
         mini=$url/mini/$photo
 cat << EOF
-    <a href="$view" data-caption="<a href=$original style=text-decoration:none;$font_big target=_blank>🔍</a>"><img loading="lazy" src="$mini" height=220px/></a>
+    <a href="$view" data-caption="<a href=$original style=text-decoration:none;$font_big target=_blank>🔍</a>"><img loading="lazy" src="$mini" style="$image_size"/></a>
 EOF
     done
 # https://github.com/feimosi/baguetteBox.js
