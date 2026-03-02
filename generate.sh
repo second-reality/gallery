@@ -18,7 +18,7 @@ base_repo_url="https://github.com/$git_user"
 
 font_big=font-size:3vh
 font_normal=font-size:2vh
-image_size='max-height:32vh;max-width:96vw'
+image_size='max-height:25vh;max-width:96vw'
 
 index_one_gallery()
 {
